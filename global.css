@@ -1,0 +1,78 @@
+/* ===================================================================== */
+/* GLOBAL STYLES & VARIABLES - The single source of truth for your theme */
+/* ===================================================================== */
+:root {
+	--color-terracotta: #e2725b;
+	--color-indigo: #4b0082;
+	--color-mustard: #ffb347;
+	--color-ivory: #f5f5dc;
+	--color-dark-text: #3d3d3d;
+	--font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+		Arial, sans-serif;
+	--font-heading: "Georgia", "Times New Roman", serif;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+	font-family: var(--font-main);
+	background-color: var(--color-ivory);
+	color: var(--color-dark-text);
+}
+
+* {
+	box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4 {
+	font-family: var(--font-heading);
+	color: var(--color-indigo);
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+/* Shared Button Styles that will be used everywhere */
+.cta-button {
+	background-color: var(--color-terracotta);
+	color: white;
+	padding: 12px 25px;
+	border: none;
+	border-radius: 5px;
+	font-size: 1rem;
+	font-weight: bold;
+	cursor: pointer;
+	text-decoration: none;
+	display: inline-block;
+	transition: background-color 0.3s, transform 0.3s;
+}
+.cta-button:hover {
+	background-color: #d1614a;
+	transform: translateY(-2px);
+}
+
+.back-btn {
+	position: absolute;
+	top: 1.5rem;
+	left: 1.5rem;
+	background-color: rgba(255, 255, 255, 0.8);
+	backdrop-filter: blur(5px);
+	border: 1px solid #ccc;
+	padding: 8px 15px;
+	border-radius: 20px;
+	cursor: pointer;
+	font-size: 0.9rem;
+	z-index: 10;
+	text-decoration: none;
+	color: var(--color-dark-text);
+}

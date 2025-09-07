@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>The Heritage of Rajasthan - Digital Heritage Bazaar</title>
+		<!-- Links to its own local stylesheet -->
+		<link rel="stylesheet" href="rajasthan.css" />
+	</head>
+	<body>
+		<!-- This tooltip is for the interactive map -->
+		<div id="tooltip"></div>
+
+		<div class="rajasthan-container">
+			<!-- The back button path is corrected to go up two directories -->
+
+			<a href="../../index.html#explore" class="back-btn">&larr; Back to Map</a>
+
+			<!-- Hero Section with a background image -->
+			<header class="hero-section">
+				<div class="hero-text">
+					<h1>Rajasthan</h1>
+					<p>The Land of Kings and Living Crafts</p>
+				</div>
+			</header>
+
+			<main class="content-wrapper">
+				<!-- Introduction -->
+				<section class="intro-section">
+					<h2>A Legacy Forged in Color</h2>
+					<p>
+						Rajasthan’s heritage is a vibrant tapestry woven with stories of
+						royalty, desert landscapes, and unparalleled artistry. Every craft,
+						from the luminous Blue Pottery of Jaipur to the intricate Meenakari
+						jewelry, is a living testament to a legacy passed down through
+						generations.
+					</p>
+				</section>
+
+				<!-- Showcase of Key Crafts -->
+				<section class="craft-showcase">
+					<h3>Signature Art Forms</h3>
+					<div class="craft-grid">
+						<div class="craft-card">
+							<img
+								src="../../assets/images/rajasthan/image1.png"
+								alt="Blue Pottery"
+							/>
+							<h4>Blue Pottery</h4>
+							<p>
+								A unique Turko-Persian art form using a special quartz dough,
+								famed for its brilliant cobalt blue dye.
+							</p>
+						</div>
+						<div class="craft-card">
+							<img
+								src="../../assets/images/rajasthan/image2.png"
+								alt="Bandhani Tie-Dye"
+							/>
+							<h4>Bandhani</h4>
+							<p>
+								An ancient tie-dye technique creating intricate patterns,
+								symbolizing the vibrant culture of the region.
+							</p>
+						</div>
+						<div class="craft-card">
+							<img
+								src="../../assets/images/rajasthan/image3.png"
+								alt="Meenakari Enamelwork"
+							/>
+							<h4>Meenakari</h4>
+							<p>
+								The exquisite art of enameling precious metals with vibrant
+								colors, traditionally used in royal jewelry.
+							</p>
+						</div>
+					</div>
+				</section>
+
+				<!-- Interactive Map Section -->
+				<section class="interactive-section">
+					<h3>Explore the Craft Map of Rajasthan</h3>
+					<p>Hover over a city to discover its famous artisanal heritage.</p>
+					<div id="rajasthan-map-container">
+						<!-- The Rajasthan SVG will be loaded here by rajasthan.js -->
+					</div>
+				</section>
+
+				<!-- Artisan Spotlight -->
+				<section class="artisan-spotlight">
+					<img
+						src="../../assets/images/rajasthan/artisan1.png"
+						alt="Portrait of an artisan"
+					/>
+					<div class="artisan-info">
+						<h3>Meet the Makers</h3>
+						<p class="quote">
+							"We do not just shape clay; we shape the stories of our ancestors.
+							Each piece holds the warmth of the desert sun and the soul of our
+							family."
+						</p>
+						<p class="artisan-name">- Kripal Singh, Potter from Jaipur</p>
+					</div>
+				</section>
+			</main>
+		</div>
+
+		<!-- Links to its own local script file -->
+		<script src="rajasthan.js"></script>
+	</body>
+</html>

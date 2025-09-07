@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Digital Heritage Bazaar</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<main id="app-container">
+			<!-- VIEW 1: Splash Screen (Starts active) -->
+			<div id="splash-screen" class="view active">
+				<img
+					src="assets/images/ashoka-chakra.svg"
+					alt="Loading Heritage"
+					class="chakra-spinner"
+				/>
+				<p class="tagline">Preserving Heritage, Empowering Artisans.</p>
+			</div>
+
+			<!-- VIEW 2: Welcome Text -->
+			<div id="welcome-map" class="view">
+				<img
+					src="assets/images/map/india-aesthetic.png"
+					alt="Map of India"
+					class="welcome-map-bg"
+				/>
+				<h1 class="welcome-title">
+					Welcome to the Rich Cultural Heritage of India
+				</h1>
+			</div>
+
+			<!-- VIEW 3: Login Page -->
+			<div id="login-page" class="view">
+				<div class="form-container">
+					<img
+						src="assets/images/logo.png"
+						alt="Heritage Hub Logo"
+						class="login-logo"
+					/>
+					<h2>Login or Create Account</h2>
+					<input type="email" placeholder="Email" />
+					<input type="password" placeholder="Password" />
+					<button class="cta-button" data-navigate-to="explore-page">
+						Sign In
+					</button>
+					<a href="#" class="guest-link" data-navigate-to="explore-page"
+						>Explore as Guest</a
+					>
+				</div>
+			</div>
+
+			<!-- VIEW 4: Explore Page (The Main App) -->
+			<div id="explore-page" class="view">
+				<div class="news-ticker-container">
+					<div class="ticker-content">
+						<span
+							>Just In: Rajasthani Blue Pottery workshop announced! • Discover
+							the lost art of Bidriware from Karnataka • Fun Fact: Madhubani art
+							uses twigs, fingers, and matchsticks! •
+						</span>
+						<span
+							>Just In: Rajasthani Blue Pottery workshop announced! • Discover
+							the lost art of Bidriware from Karnataka • Fun Fact: Madhubani art
+							uses twigs, fingers, and matchsticks! •
+						</span>
+					</div>
+				</div>
+				<div id="interactive-map-container">
+					<!-- The interactive SVG map will be loaded here by JavaScript -->
+				</div>
+				<p id="map-prompt-text">Click on a state to view its art</p>
+				<nav id="bottom-dock">
+					<a href="#" class="dock-item" data-navigate-to="passport-page"
+						><span>Passport</span></a
+					>
+					<div class="fab-container">
+						<button id="fab-button">
+							<img src="assets/images/logo.png" alt="Heritage Hub Menu" />
+						</button>
+						<div class="fab-options">
+							<a href="#">Settings</a><a href="#">Profile</a
+							><a href="#">Logout</a>
+						</div>
+					</div>
+					<a href="#" class="dock-item" data-navigate-to="community-hub"
+						><span>Community</span></a
+					>
+				</nav>
+			</div>
+
+			<!-- VIEW 5: State Info Panel -->
+			<div id="state-info-panel" class="panel">
+				<button class="close-btn">&times;</button>
+				<h2 id="panel-state-name"></h2>
+				<p id="panel-state-description"></p>
+				<audio id="panel-audio-player" controls></audio>
+				<div id="panel-subtitles"></div>
+				<button class="cta-button" data-navigate-to="artisan-story-page">
+					Discover Artisans
+				</button>
+			</div>
+
+			<!-- Other Views -->
+			<div id="artisan-story-page" class="view">
+				<button class="back-btn" data-navigate-to="explore-page">
+					&larr; Back to Map
+				</button>
+				<h1>The Story of Madhubani</h1>
+			</div>
+			<div id="product-page" class="view">
+				<button class="back-btn" data-navigate-to="artisan-story-page">
+					&larr; Back to Story
+				</button>
+				<h1>Madhubani Paintings</h1>
+				<div class="product-grid"></div>
+			</div>
+			<div id="cart-page" class="view">
+				<button class="back-btn" data-navigate-to="product-page">
+					&larr; Continue Shopping
+				</button>
+				<h1>Your Cart</h1>
+				<p>You are supporting 3 artisans today.</p>
+				<button class="cta-button" data-navigate-to="checkout-page">
+					Proceed to Checkout
+				</button>
+			</div>
+			<div id="checkout-page" class="view">
+				<button class="back-btn" data-navigate-to="cart-page">
+					&larr; Back to Cart
+				</button>
+				<h1>Checkout</h1>
+			</div>
+			<div id="thank-you-page" class="view">
+				🎉
+				<h1>Thank You for Supporting Artisans!</h1>
+				<video src="assets/videos/dhanyavaad.mp4" autoplay loop muted></video
+				><button class="cta-button" data-navigate-to="explore-page">
+					Explore More
+				</button>
+			</div>
+			<div id="passport-page" class="view">
+				<button class="back-btn" data-navigate-to="explore-page">
+					&larr; Back to Map
+				</button>
+				<h1>My Heritage Passport</h1>
+			</div>
+			<div id="community-hub" class="view">
+				<button class="back-btn" data-navigate-to="explore-page">
+					&larr; Back to Map
+				</button>
+				<h1>Workshops & Stories</h1>
+			</div>
+			<div id="fair-trade-page" class="view">
+				<button class="back-btn" data-navigate-to="product-page">
+					&larr; Back to Product
+				</button>
+				<h1>Our Fair Trade Promise</h1>
+			</div>
+		</main>
+		<script src="script.js"></script>
+	</body>
+</html>

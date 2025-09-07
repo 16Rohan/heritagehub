@@ -1,0 +1,471 @@
+@import url("global.css");
+/* ===================================================================== */
+/* 1. GLOBAL STYLES & VARIABLES                                        */
+/* ===================================================================== */
+:root {
+	--color-terracotta: #e2725b;
+	--color-indigo: #4b0082;
+	--color-mustard: #ffb347;
+	--color-ivory: #f5f5dc;
+	--color-dark-text: #3d3d3d;
+	--font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+		Arial, sans-serif;
+	--font-heading: "Georgia", "Times New Roman", serif;
+	--font-special: "Merriweather", "Georgia", serif;
+}
+html,
+body {
+	margin: 0;
+	padding: 0;
+	font-family: var(--font-main);
+	background-color: var(--color-ivory);
+	color: var(--color-dark-text);
+	overflow: hidden;
+	height: 100%;
+}
+* {
+	box-sizing: border-box;
+}
+h1,
+h2 {
+	font-family: var(--font-heading);
+	color: var(--color-indigo);
+}
+
+/* ===================================================================== */
+/* 2. CORE SPA MECHANICS & ANIMATIONS (REWRITTEN)                      */
+/* ===================================================================== */
+.view {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 2rem;
+	opacity: 0; /* A view is invisible by default */
+	pointer-events: none; /* Can't click on invisible views */
+	transition: opacity 0.5s ease-out; /* Smooth fade for transitions */
+}
+/* The active view is visible and clickable */
+.view.active {
+	opacity: 1;
+	pointer-events: auto;
+	z-index: 1;
+}
+/* Splash screen needs to be on top of everything initially */
+#splash-screen.active {
+	z-index: 10;
+}
+
+/* Animation classes controlled by JS */
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+@keyframes fadeOutUp {
+	from {
+		opacity: 1;
+		transform: translateY(0);
+	}
+	to {
+		opacity: 0;
+		transform: translateY(-20px);
+	}
+}
+.fade-in-up {
+	animation: fadeInUp 0.5s ease-out forwards;
+}
+.fade-out-up {
+	animation: fadeOutUp 0.5s ease-out forwards;
+	z-index: 2; /* Ensure outgoing view is on top */
+}
+
+/* ===================================================================== */
+/* 3. STYLING FOR EACH VIEW AND COMPONENT                              */
+/* ===================================================================== */
+
+/* --- VIEW 1: Splash Screen --- */
+#splash-screen .chakra-spinner {
+	width: 150px;
+	height: 150px;
+	animation: spin 2.5s linear infinite;
+}
+@keyframes spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+#splash-screen .tagline {
+	margin-top: 2rem;
+	font-size: 1.2rem;
+	color: var(--color-indigo);
+}
+
+/* --- VIEW 2: Welcome Text --- */
+#welcome-map {
+	background-color: var(--color-indigo);
+}
+.welcome-map-bg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	opacity: 0.15;
+}
+.welcome-title {
+	position: relative;
+	color: white;
+	font-size: 3vw;
+	text-align: center;
+	padding: 0 5%;
+	width: 90%;
+}
+
+/* We will create a <span> for each word. This is their default state: hidden. */
+.welcome-title span {
+	display: inline-block; /* Allows us to transform the words */
+	opacity: 0;
+	transform: translateY(20px);
+
+	/* THE FIX IS HERE: This physically pushes the words apart. */
+	margin-right: 0.25em;
+
+	/* The transition for each word appearing */
+	transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* When the parent h1 gets the 'reveal' class, the words animate in */
+.welcome-title.reveal span {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+/* --- VIEW 3: Login Page --- */
+.form-container {
+	background: rgb(245, 245, 220);
+	padding: 3rem;
+	border-radius: 10px;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+	text-align: center;
+	width: 90%;
+	max-width: 400px;
+}
+.form-container input {
+	display: block;
+	width: 100%;
+	padding: 12px;
+	margin-bottom: 1rem;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+.guest-link {
+	display: block;
+	margin-top: 1rem;
+	color: var(--color-terracotta);
+}
+.login-logo {
+	height: 150px;
+	width: auto;
+	margin-bottom: 1.5rem;
+}
+
+/* --- VIEW 4: Explore Page --- */
+#explore-page {
+	justify-content: flex-start;
+}
+.news-ticker-container {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background-color: var(--color-indigo);
+	color: var(--color-mustard);
+	padding: 10px 0;
+	overflow: hidden;
+	white-space: nowrap;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+	z-index: 5;
+	font-family: var(--font-special);
+}
+.ticker-content {
+	display: inline-block;
+	padding-left: 100%;
+	animation: scroll-left 30s linear infinite;
+}
+@keyframes scroll-left {
+	0% {
+		transform: translateX(0);
+	}
+	100% {
+		transform: translateX(-100%);
+	}
+}
+#interactive-map-container {
+	width: 100%;
+	max-width: 800px;
+	margin: 0 auto;
+	padding-top: 50px;
+} /* Adjusted padding */
+#interactive-map-container svg {
+	width: 100%;
+	height: auto;
+}
+#interactive-map-container svg path {
+	fill: var(--color-terracotta);
+	stroke: var(--color-ivory);
+	stroke-width: 1.5px;
+	transition: all 0.2s ease-in-out;
+	cursor: pointer;
+}
+#interactive-map-container svg path:hover {
+	fill: var(--color-mustard);
+	transform: translateY(-2px);
+}
+#map-prompt-text {
+	font-style: italic;
+	color: var(--color-dark-text);
+	opacity: 0.8;
+	margin-top: 1rem;
+	text-align: center;
+}
+
+/* --- VIEW 5: State Info Panel --- */
+.panel {
+	position: fixed;
+	top: 0;
+	right: -100%;
+	width: 100%;
+	max-width: 400px;
+	height: 100vh;
+	background-color: white;
+	box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+	padding: 2rem;
+	z-index: 100;
+	transition: right 0.5s ease-in-out;
+	overflow-y: auto;
+	display: block;
+}
+.panel.visible {
+	right: 0;
+}
+.close-btn {
+	position: absolute;
+	top: 15px;
+	right: 15px;
+	font-size: 2rem;
+	font-weight: bold;
+	cursor: pointer;
+	border: none;
+	background: none;
+	color: #aaa;
+}
+#panel-audio-player {
+	width: 100%;
+	margin-top: 1rem;
+}
+#panel-subtitles {
+	margin-top: 1rem;
+	padding: 1rem;
+	background-color: #f0f0f0;
+	border-radius: 5px;
+	min-height: 50px;
+	font-style: italic;
+}
+
+/* --- Other Page Styles --- */
+#thank-you-page {
+	background-color: var(--color-mustard);
+	color: white;
+}
+#thank-you-page h1 {
+	color: white;
+}
+#thank-you-page video {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	z-index: -1;
+	opacity: 0.2;
+}
+
+/* ===================================================================== */
+/* 4. REUSABLE & FLOATING COMPONENTS                                   */
+/* ===================================================================== */
+.cta-button {
+	background-color: var(--color-terracotta);
+	color: white;
+	padding: 12px 25px;
+	border: none;
+	border-radius: 5px;
+	font-size: 1rem;
+	font-weight: bold;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+.cta-button:hover {
+	background-color: #d1614a;
+}
+.back-btn {
+	position: absolute;
+	top: 2rem;
+	left: 2rem;
+	background: none;
+	border: 1px solid #ccc;
+	padding: 8px 15px;
+	border-radius: 20px;
+	cursor: pointer;
+	font-size: 0.9rem;
+	z-index: 5;
+}
+#bottom-dock {
+	position: fixed;
+	bottom: 20px;
+	left: 50%;
+	width: 90%;
+	max-width: 380px;
+	z-index: 1000;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	background-color: rgba(255, 255, 255, 0.9);
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	padding: 10px;
+	border-radius: 30px;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+	visibility: hidden;
+	opacity: 0;
+	transform: translateX(-50%) translateY(20px);
+	transition: opacity 0.4s ease, transform 0.4s ease;
+}
+#explore-page.active #bottom-dock {
+	visibility: visible;
+	opacity: 1;
+	transform: translateX(-50%) translateY(0);
+}
+.dock-item {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-decoration: none;
+	color: var(--color-indigo);
+	font-size: 0.9rem;
+	font-weight: 600;
+	transition: transform 0.2s ease;
+	font-family: var(--font-special);
+}
+.dock-item:hover {
+	transform: scale(1.1);
+}
+.fab-container {
+	position: relative;
+	display: flex;
+	justify-content: center;
+}
+#fab-button {
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	background: var(--color-indigo);
+	border: none;
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	transform: translateY(-35px);
+	transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+#fab-button:hover {
+	transform: translateY(-35px) scale(1.1);
+}
+#fab-button img {
+	width: 60px;
+	height: auto;
+}
+#fab-button.active {
+	transform: translateY(-35px) rotate(45deg);
+}
+.fab-options {
+	position: absolute;
+	bottom: 95px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 10px;
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(10px);
+	transition: all 0.3s ease;
+}
+.fab-options.active {
+	opacity: 1;
+	visibility: visible;
+	transform: translateY(0);
+}
+.fab-options a {
+	display: block;
+	padding: 8px 16px;
+	background: white;
+	color: var(--color-indigo);
+	text-decoration: none;
+	border-radius: 20px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+	white-space: nowrap;
+}
+
+/* ===================================================================== */
+/* 5. MOBILE RESPONSIVENESS (MEDIA QUERIES)                            */
+/* ===================================================================== */
+@media (max-width: 768px) {
+	.view {
+		padding: 1rem;
+	}
+	h1,
+	.welcome-title {
+		font-size: 1.8rem;
+	}
+	h2 {
+		font-size: 1.4rem;
+	}
+	p {
+		font-size: 0.95rem;
+	}
+	.welcome-title {
+		font-size: 8vw;
+	}
+	.form-container {
+		width: 100%;
+		padding: 2rem;
+	}
+	.panel {
+		width: 90%;
+		max-width: none;
+	}
+	.back-btn {
+		top: 1rem;
+		left: 1rem;
+		padding: 6px 12px;
+	}
+	.product-grid {
+		grid-template-columns: 1fr;
+	}
+}

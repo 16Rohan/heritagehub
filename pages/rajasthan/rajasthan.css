@@ -1,0 +1,214 @@
+/* ===================================================================== */
+/* 1. SHARED STYLES & VARIABLES                                        */
+/* ===================================================================== */
+:root {
+	--color-terracotta: #e2725b;
+	--color-indigo: #4b0082;
+	--color-mustard: #ffb347;
+	--color-ivory: #f5f5dc;
+	--color-dark-text: #3d3d3d;
+	--font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+		Arial, sans-serif;
+	--font-heading: "Georgia", "Times New Roman", serif;
+}
+html,
+body {
+	margin: 0;
+	padding: 0;
+	font-family: var(--font-main);
+	background-color: var(--color-ivory);
+	color: var(--color-dark-text);
+}
+* {
+	box-sizing: border-box;
+}
+h1,
+h2,
+h3,
+h4 {
+	font-family: var(--font-heading);
+	color: var(--color-indigo);
+}
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+/* Shared Button Styles */
+.back-btn {
+	position: absolute;
+	top: 1.5rem;
+	left: 1.5rem;
+	background-color: rgba(255, 255, 255, 0.8);
+	backdrop-filter: blur(5px);
+	border: 1px solid #ccc;
+	padding: 8px 15px;
+	border-radius: 20px;
+	cursor: pointer;
+	font-size: 0.9rem;
+	z-index: 10;
+	text-decoration: none;
+	color: var(--color-dark-text);
+}
+
+/* ===================================================================== */
+/* 2. RAJASTHAN PAGE LAYOUT                                            */
+/* ===================================================================== */
+.rajasthan-container {
+	animation: fadeIn 1s ease-in-out;
+}
+.content-wrapper {
+	max-width: 950px;
+	margin: 0 auto;
+	padding: 2rem;
+}
+section {
+	margin-bottom: 4rem;
+	text-align: center;
+}
+
+/* --- Hero Section --- */
+.hero-section {
+	position: relative;
+	width: 100%;
+	height: 50vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	background: url("../../assets/images/rajasthan/hero-bg.png") no-repeat center
+		center/cover;
+	color: white;
+}
+.hero-section::before {
+	/* Dark overlay for text readability */
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.4);
+}
+.hero-text {
+	position: relative;
+	z-index: 2;
+}
+.hero-text h1 {
+	font-size: 4rem;
+	color: white;
+	margin: 0;
+	text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+.hero-text p {
+	font-size: 1.5rem;
+}
+
+/* --- Craft Showcase --- */
+.craft-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+	gap: 1.5rem;
+	text-align: left;
+}
+.craft-card {
+	background: #fff;
+	border-radius: 10px;
+	box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+	overflow: hidden;
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.craft-card:hover {
+	transform: translateY(-10px);
+	box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+}
+.craft-card img {
+	width: 100%;
+	height: 200px;
+	object-fit: cover;
+}
+.craft-card h4,
+.craft-card p {
+	padding: 0 1.5rem;
+}
+.craft-card h4 {
+	margin-top: 1rem;
+}
+.craft-card p {
+	padding-bottom: 1.5rem;
+	line-height: 1.5;
+}
+
+/* --- Interactive Rajasthan Map --- */
+#rajasthan-map-container {
+	background: #fff;
+	padding: 2rem;
+	border-radius: 10px;
+	box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+#rajasthan-map-container svg path {
+	fill: var(--color-terracotta);
+	stroke: var(--color-ivory);
+	stroke-width: 2px;
+	transition: fill 0.3s ease;
+}
+#rajasthan-map-container svg path:hover {
+	fill: var(--color-mustard);
+}
+#tooltip {
+	position: absolute;
+	background: var(--color-dark-text);
+	color: white;
+	padding: 10px 15px;
+	border-radius: 5px;
+	font-size: 0.9rem;
+	pointer-events: none;
+	opacity: 0;
+	transition: opacity 0.2s ease;
+	white-space: nowrap;
+}
+
+/* --- Artisan Spotlight --- */
+.artisan-spotlight {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 2rem;
+	background: var(--color-ivory);
+	border-top: 2px solid var(--color-terracotta);
+	border-bottom: 2px solid var(--color-terracotta);
+	padding: 3rem 1rem;
+}
+.artisan-spotlight img {
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	object-fit: cover;
+	border: 5px solid white;
+	box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+}
+.artisan-spotlight .quote {
+	font-size: 1.2rem;
+	font-style: italic;
+	max-width: 600px;
+}
+.artisan-spotlight .artisan-name {
+	font-weight: bold;
+}
+
+/* --- Responsiveness --- */
+@media (max-width: 768px) {
+	.hero-text h1 {
+		font-size: 2.5rem;
+	}
+	.hero-text p {
+		font-size: 1.2rem;
+	}
+	.artisan-spotlight {
+		flex-direction: column;
+	}
+}
