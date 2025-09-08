@@ -4,11 +4,9 @@
 /* ===================================================================== */
 /* COMMUNITY PAGE SPECIFIC STYLES                                      */
 /* ===================================================================== */
-
 body {
 	animation: fadeIn 1s ease-in-out;
 }
-
 .main-header {
 	background: linear-gradient(rgba(75, 0, 130, 0.8), rgba(75, 0, 130, 0.6)),
 		url("https://images.unsplash.com/photo-1528459142940-19a3669146a2?q=80&w=2592&auto=format&fit=crop");
@@ -26,16 +24,13 @@ body {
 	font-size: 1.2rem;
 	opacity: 0.9;
 }
-
 .container {
 	max-width: 1100px;
-	margin: -3rem auto 0; /* Pull content up over the header for a layered effect */
+	margin: -3rem auto 0;
 	padding: 2rem;
 	position: relative;
 	z-index: 2;
 }
-
-/* --- Featured Story --- */
 .featured-story {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
@@ -65,8 +60,6 @@ body {
 	font-weight: bold;
 	margin-bottom: 1rem;
 }
-
-/* --- Artisan Grid --- */
 .section-title {
 	text-align: center;
 	margin-bottom: 2rem;
@@ -89,9 +82,9 @@ body {
 	box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
 }
 .artisan-card img {
-	width: 120px;
-	height: 120px;
-	border-radius: 50%;
+	width: 180px;
+	height: 180px;
+	border-radius: 35%;
 	object-fit: cover;
 	margin-bottom: 1rem;
 	border: 4px solid var(--color-ivory);
@@ -105,8 +98,6 @@ body {
 	font-weight: bold;
 	text-decoration: none;
 }
-
-/* Responsive Adjustments */
 @media (max-width: 900px) {
 	.featured-story {
 		grid-template-columns: 1fr;

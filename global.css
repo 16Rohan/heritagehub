@@ -1,5 +1,5 @@
 /* ===================================================================== */
-/* GLOBAL STYLES & VARIABLES - The single source of truth for your theme */
+/* 1. GLOBAL STYLES & VARIABLES - The theme for the entire project      */
 /* ===================================================================== */
 :root {
 	--color-terracotta: #e2725b;
@@ -10,6 +10,7 @@
 	--font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
 		Arial, sans-serif;
 	--font-heading: "Georgia", "Times New Roman", serif;
+	--font-special: "Merriweather", "Georgia", serif;
 }
 
 html,
@@ -19,6 +20,8 @@ body {
 	font-family: var(--font-main);
 	background-color: var(--color-ivory);
 	color: var(--color-dark-text);
+	overflow-x: hidden;
+	height: 100%;
 }
 
 * {
@@ -42,7 +45,10 @@ h4 {
 	}
 }
 
-/* Shared Button Styles that will be used everywhere */
+/* ===================================================================== */
+/* 2. REUSABLE COMPONENTS - Used across multiple pages                 */
+/* ===================================================================== */
+
 .cta-button {
 	background-color: var(--color-terracotta);
 	color: white;

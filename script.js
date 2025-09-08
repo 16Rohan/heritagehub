@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 		setTimeout(() => {
 			titleEl.classList.add("reveal");
-		}, 100);
+		}, 600);
 	};
 
 	// --- Intro Sequence (for first-time visits) ---

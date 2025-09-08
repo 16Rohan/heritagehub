@@ -7,6 +7,7 @@
 	--color-mustard: #ffb347;
 	--color-ivory: #f5f5dc;
 	--color-dark-text: #3d3d3d;
+	--color-success: #28a745;
 	--font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
 		Arial, sans-serif;
 	--font-heading: "Georgia", "Times New Roman", serif;
@@ -37,8 +38,6 @@ h4 {
 		opacity: 1;
 	}
 }
-
-/* Shared Button Styles */
 .back-btn {
 	position: absolute;
 	top: 1.5rem;
@@ -85,7 +84,6 @@ section {
 	color: white;
 }
 .hero-section::before {
-	/* Dark overlay for text readability */
 	content: "";
 	position: absolute;
 	top: 0;
@@ -121,6 +119,8 @@ section {
 	box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
 	overflow: hidden;
 	transition: transform 0.3s ease, box-shadow 0.3s ease;
+	display: flex;
+	flex-direction: column;
 }
 .craft-card:hover {
 	transform: translateY(-10px);
@@ -139,8 +139,33 @@ section {
 	margin-top: 1rem;
 }
 .craft-card p {
-	padding-bottom: 1.5rem;
 	line-height: 1.5;
+}
+/* NEW STYLES for the button container and button */
+.card-actions {
+	padding: 1.5rem;
+	margin-top: auto; /* Pushes button to the bottom */
+	text-align: center;
+}
+.add-to-cart-btn {
+	background-color: var(--color-indigo);
+	color: white;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	font-size: 0.9rem;
+	font-weight: bold;
+	cursor: pointer;
+	transition: background-color 0.3s, transform 0.3s;
+	width: 100%;
+}
+.add-to-cart-btn:hover {
+	background-color: #3a0063;
+	transform: scale(1.05);
+}
+.add-to-cart-btn.added {
+	background-color: var(--color-success);
+	cursor: not-allowed;
 }
 
 /* --- Interactive Rajasthan Map --- */

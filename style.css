@@ -1,40 +1,13 @@
+/* Import the global theme. This MUST be the first line. */
 @import url("global.css");
-/* ===================================================================== */
-/* 1. GLOBAL STYLES & VARIABLES                                        */
-/* ===================================================================== */
-:root {
-	--color-terracotta: #e2725b;
-	--color-indigo: #4b0082;
-	--color-mustard: #ffb347;
-	--color-ivory: #f5f5dc;
-	--color-dark-text: #3d3d3d;
-	--font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
-		Arial, sans-serif;
-	--font-heading: "Georgia", "Times New Roman", serif;
-	--font-special: "Merriweather", "Georgia", serif;
-}
-html,
-body {
-	margin: 0;
-	padding: 0;
-	font-family: var(--font-main);
-	background-color: var(--color-ivory);
-	color: var(--color-dark-text);
-	overflow: hidden;
-	height: 100%;
-}
-* {
-	box-sizing: border-box;
-}
-h1,
-h2 {
-	font-family: var(--font-heading);
-	color: var(--color-indigo);
-}
 
 /* ===================================================================== */
-/* 2. CORE SPA MECHANICS & ANIMATIONS (REWRITTEN)                      */
+/* 2. CORE SPA MECHANICS & ANIMATIONS (Specific to index.html)         */
 /* ===================================================================== */
+body {
+	overflow: hidden; /* Prevent scrolling on the main SPA container */
+}
+
 .view {
 	position: absolute;
 	top: 0;
@@ -46,22 +19,19 @@ h2 {
 	justify-content: center;
 	align-items: center;
 	padding: 2rem;
-	opacity: 0; /* A view is invisible by default */
-	pointer-events: none; /* Can't click on invisible views */
-	transition: opacity 0.5s ease-out; /* Smooth fade for transitions */
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.5s ease-out;
 }
-/* The active view is visible and clickable */
 .view.active {
 	opacity: 1;
 	pointer-events: auto;
 	z-index: 1;
 }
-/* Splash screen needs to be on top of everything initially */
 #splash-screen.active {
 	z-index: 10;
 }
 
-/* Animation classes controlled by JS */
 @keyframes fadeInUp {
 	from {
 		opacity: 0;
@@ -87,11 +57,11 @@ h2 {
 }
 .fade-out-up {
 	animation: fadeOutUp 0.5s ease-out forwards;
-	z-index: 2; /* Ensure outgoing view is on top */
+	z-index: 2;
 }
 
 /* ===================================================================== */
-/* 3. STYLING FOR EACH VIEW AND COMPONENT                              */
+/* 3. STYLING FOR index.html VIEWS AND COMPONENTS                      */
 /* ===================================================================== */
 
 /* --- VIEW 1: Splash Screen --- */
@@ -135,21 +105,13 @@ h2 {
 	padding: 0 5%;
 	width: 90%;
 }
-
-/* We will create a <span> for each word. This is their default state: hidden. */
 .welcome-title span {
-	display: inline-block; /* Allows us to transform the words */
+	display: inline-block;
 	opacity: 0;
 	transform: translateY(20px);
-
-	/* THE FIX IS HERE: This physically pushes the words apart. */
 	margin-right: 0.25em;
-
-	/* The transition for each word appearing */
 	transition: opacity 0.6s ease, transform 0.6s ease;
 }
-
-/* When the parent h1 gets the 'reveal' class, the words animate in */
 .welcome-title.reveal span {
 	opacity: 1;
 	transform: translateY(0);
@@ -205,7 +167,7 @@ h2 {
 .ticker-content {
 	display: inline-block;
 	padding-left: 100%;
-	animation: scroll-left 30s linear infinite;
+	animation: scroll-left 250s linear infinite;
 }
 @keyframes scroll-left {
 	0% {
@@ -220,7 +182,7 @@ h2 {
 	max-width: 800px;
 	margin: 0 auto;
 	padding-top: 50px;
-} /* Adjusted padding */
+}
 #interactive-map-container svg {
 	width: 100%;
 	height: auto;
@@ -287,54 +249,7 @@ h2 {
 	font-style: italic;
 }
 
-/* --- Other Page Styles --- */
-#thank-you-page {
-	background-color: var(--color-mustard);
-	color: white;
-}
-#thank-you-page h1 {
-	color: white;
-}
-#thank-you-page video {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	z-index: -1;
-	opacity: 0.2;
-}
-
-/* ===================================================================== */
-/* 4. REUSABLE & FLOATING COMPONENTS                                   */
-/* ===================================================================== */
-.cta-button {
-	background-color: var(--color-terracotta);
-	color: white;
-	padding: 12px 25px;
-	border: none;
-	border-radius: 5px;
-	font-size: 1rem;
-	font-weight: bold;
-	cursor: pointer;
-	transition: background-color 0.3s;
-}
-.cta-button:hover {
-	background-color: #d1614a;
-}
-.back-btn {
-	position: absolute;
-	top: 2rem;
-	left: 2rem;
-	background: none;
-	border: 1px solid #ccc;
-	padding: 8px 15px;
-	border-radius: 20px;
-	cursor: pointer;
-	font-size: 0.9rem;
-	z-index: 5;
-}
+/* --- Floating Island Dock Navigation --- */
 #bottom-dock {
 	position: fixed;
 	bottom: 20px;

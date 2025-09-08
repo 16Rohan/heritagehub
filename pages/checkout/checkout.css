@@ -1,0 +1,125 @@
+/* This file only contains styles specific to the checkout page.
+   The main theme is handled by global.css, linked in the HTML. */
+
+body {
+	animation: fadeIn 1s ease-in-out;
+}
+
+.checkout-container {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 2rem;
+}
+
+.checkout-header {
+	text-align: center;
+	margin-bottom: 3rem;
+}
+
+.checkout-grid {
+	display: grid;
+	grid-template-columns: 1fr; /* Single column on mobile */
+	gap: 3rem;
+}
+
+/* On larger screens, switch to a two-column layout */
+@media (min-width: 900px) {
+	.checkout-grid {
+		grid-template-columns: 1fr 1fr;
+	}
+}
+
+/* --- Order Summary (Left Column) --- */
+.order-summary {
+	background: #fff;
+	padding: 2rem;
+	border-radius: 10px;
+	box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.order-summary h2 {
+	margin-top: 0;
+	padding-bottom: 1rem;
+	border-bottom: 1px solid #eee;
+}
+
+#cart-items-container .loading-text {
+	text-align: center;
+	color: #888;
+	padding: 2rem 0;
+}
+
+.cart-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1rem 0;
+	border-bottom: 1px solid #eee;
+}
+.cart-item-details h4 {
+	margin: 0 0 5px 0;
+	font-size: 1rem;
+	color: var(--color-dark-text);
+}
+.cart-item-details p {
+	margin: 0;
+	font-size: 0.9rem;
+	color: #888;
+}
+.cart-item-price {
+	font-weight: bold;
+	color: var(--color-dark-text);
+}
+
+.summary-totals {
+	margin-top: 1.5rem;
+	padding-top: 1.5rem;
+	border-top: 2px solid #ddd;
+}
+.total-row {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 0.5rem;
+}
+.grand-total {
+	font-size: 1.2rem;
+	font-weight: bold;
+	margin-top: 1rem;
+}
+.grand-total span {
+	color: var(--color-indigo);
+}
+
+/* --- Customer Details (Right Column) --- */
+.customer-details {
+	padding: 0 1rem;
+}
+
+.customer-details h2 {
+	margin-top: 0;
+}
+
+#checkout-form label {
+	display: block;
+	margin-bottom: 0.5rem;
+	font-weight: bold;
+	font-size: 0.9rem;
+}
+#checkout-form input {
+	width: 100%;
+	padding: 12px;
+	margin-bottom: 1.5rem;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	font-size: 1rem;
+}
+.form-row {
+	display: flex;
+	gap: 1rem;
+}
+.place-order-btn {
+	width: 100%;
+	padding: 15px;
+	font-size: 1.1rem;
+	margin-top: 1rem;
+}
